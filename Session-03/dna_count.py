@@ -1,6 +1,6 @@
 def correct_dna(seq):
     for c in seq:
-        if c != "A" or c != "C" or c != "G" or c != "T":
+        if c != "A" and c != "C" and c != "G" and c != "T":
             return False
     return True
 
