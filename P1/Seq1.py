@@ -189,11 +189,11 @@ class Seq:
         else:
             return "G"
 
+def test_sequences():
+    s1 = Seq()
+    s2 = Seq("ACTGA")
+    s3 = Seq("Invalid sequence")
+    return s1, s2, s3
 
 
 
-def generate_seqs(pattern, number):
-    list_seq = []
-    for i in range(0, int(number)):
-        list_seq.append(Seq(pattern * (i+1)))
-    return list_seq
