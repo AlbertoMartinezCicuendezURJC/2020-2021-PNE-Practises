@@ -180,24 +180,14 @@ class Seq:
 
     def most_repeated_base(self):
         a, c, g, t = self.count_bases()
-        for base in self.strbases:
-            if base == "A":
-                a += 1
-            elif base == "T":
-                t += 1
-            elif base == "C":
-                c += 1
-            else:
-                g += 1
-        counter_list = [a, c, g, t]
-        if max(counter_list) == a:
+        if max(a, c, g, t) == a:
             return "A"
-        elif max(counter_list) == c:
+        if max(a, c, g, t) == c:
             return "C"
-        elif max(counter_list) == g:
-            return "G"
-        else:
+        if max(a, c, g, t) == t:
             return "T"
+        else:
+            return "G"
 
 
 
