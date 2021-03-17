@@ -87,7 +87,7 @@ class Seq:
             print("NULL Seq created!")
 
         else:
-            if is_valid_sequence(strbases):
+            if Seq.is_valid_sequence_2(strbases):
                 self.strbases = strbases
                 print("New sequence created!")
 
