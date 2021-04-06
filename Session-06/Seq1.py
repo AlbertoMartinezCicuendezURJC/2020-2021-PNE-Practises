@@ -79,7 +79,7 @@ class Seq:
 
     def __init__(self, strbases):
 
-        if is_valid_sequence(strbases):   #dos maneras de hacerlo: con la actual y con el staticmethod, poniendo self.is_valid_sequence_2(strbases)
+        if is_valid_sequence(strbases):   #dos maneras de hacerlo: con la actual y con el staticmethod, poniendo Seq.is_valid_sequence_2(strbases)
             self.strbases = strbases
             print("New sequence created!")
         else:

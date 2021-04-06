@@ -190,6 +190,22 @@ class Seq:
             return "G"
 
 
+class Gene(Seq):
+
+    def __init__(self, strbases, name):
+        super().__init__(strbases) #para heredar el atributo de la clase papi
+        self.name = name
+
+    def __str__(self):
+        return self.strbases + self.name
+
+
+
+
+
+
+
+
 
 def test_sequences():
     s1 = Seq()

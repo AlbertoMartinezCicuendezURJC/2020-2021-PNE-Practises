@@ -17,3 +17,4 @@ for i in range(1, len(list_seq) + 1):
     print_result(i, list_seq[i - 1])
 
 
+
