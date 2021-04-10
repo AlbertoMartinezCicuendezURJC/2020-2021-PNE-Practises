@@ -4,7 +4,7 @@ import server_utils
 
 list_sequences = ["AGCTAGCTACT", "ATGCATCGATGCATGCTGACTGACTATGCTAG", "ATGCATGCATGCAGCT", "AGCTATAGCTAGCTACTG"]
 PORT = 8080
-IP = "localhost"
+IP = "127.0.0.1"
 c_counter = 0
 # -- Step 1: create the socket
 ls = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -50,7 +50,7 @@ while True:
     if formatted_message == "PING":
         server_utils.ping()
         response = "OK!"
-        cs.send(str(response).encode())
+        cs.send(response.encode())
     elif command == "GET":
         try:
             response = list_sequences[int(argument)]
@@ -98,6 +98,5 @@ while True:
     if c_counter == 5:
         for address in range(0, len(client_address_list)):
             print("Client:" + str(address) + " Client IP, PORT" + str(client_address_list[address]))
-        exit(0)
 
 # ls.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) esto hace que fuerze el puerto para que lo cierre y lo pueda usar
