@@ -1,17 +1,29 @@
 from Seq1 import Seq
 from pathlib import Path
+import colorama
+import termcolor
+
 
 GENE_FOLDER = "./sequences3/"
 
 
 def print_colored(message, color):
-    import termcolor
-    import colorama
     colorama.init(strip="False")
     print(termcolor.colored(message, color))
 
-def ping():
-    print_colored("PING command!", "green")
+def coloured_text(message):
+    if message == "GET":
+        print_colored("GET", "green")
+    elif message == "PING":
+        print_colored("PING command!", "green")
+    elif message == "INFO":
+        print_colored("INFO", "green")
+    elif message == "COMP":
+        print_colored("COMP", "green")
+    elif message == "REV":
+        print_colored("REV", "green")
+    else:
+        print_colored("GENE", "green")
 
 def format_command(command): # esto es porque al final, si pones por ejemplo PING, siempre habra un \r\n al final
     return command.replace("\n", "").replace("\r", "")

@@ -38,15 +38,9 @@ class Client:
         # Return the response
         return response
 
-    def debug_talk(self, msg):
-        response = self.talk(msg)
-        print("To server:", end=" ")
-        termcolor.cprint(msg, "yellow")
-        print("From server:", end=" ")
-        termcolor.cprint(response, "blue")
-        return ""
-
-
+    def debug_talk(self, message):
+        msg = self.debug_talk(message)
+        return msg
 
 
 

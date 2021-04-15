@@ -2,10 +2,10 @@ import socket
 import server_utils
 
 
-list_sequences = ["AGCTAGCTACT", "ATGCATCGATGCATGCTGACTGACTATGCTAG", "ATGCATGCATGCAGCT", "AGCTATAGCTAGCTACTG"]
 PORT = 8080
 IP = "127.0.0.1"
 c_counter = 0
+list_sequences = ["TGACGATCGATCGACTG", "CGATCGATCGATCGATCGATCAGTC", "GACTCGATCGATCGATCGATCGATCG", "TATTAGCGGCTAGCTAGCTGATCCACAGTGCATG"]
 # -- Step 1: create the socket
 ls = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -26,9 +26,7 @@ while True:
     print("Waiting for Clients to connect")
     (cs, client_ip_port) = ls.accept()
     client_address_list.append(client_ip_port)
-    c_counter += 1
-    print("CONNECTION: " + str(c_counter) + " CLient IP, PORT: " + str(client_ip_port))
-    print("A client has connected to the server!")
+
 
     # -- Read the message from the client
     # -- The received message is in raw bytes
@@ -47,38 +45,52 @@ while True:
         command = formatted_message[0]
         argument = formatted_message[1]
 
-    if formatted_message == "PING":
-        server_utils.ping()
+    if command == "PING":
+        server_utils.coloured_text(command)
         response = "OK!"
         cs.send(response.encode())
+        print(response)
+
     elif command == "GET":
         try:
+            server_utils.coloured_text(command)
             response = list_sequences[int(argument)]
             cs.send(response.encode())
+            print(list_sequences[int(argument)])
+
         except Exception:
             response = "The choosen index is out of the range. Please, choose an integer number between 0 and 3"
             cs.send(response.encode())
 
     elif command == "INFO":
         try:
+            server_utils.coloured_text(command)
             response = server_utils.print_info(argument)
             cs.send(response.encode())
+            print(response)
+
         except ZeroDivisionError:
             response = "Invalid sequence. Please, choose a correct one."
             cs.send(response.encode())
 
     elif command == "COMP":
-            response = server_utils.complement_seq(argument)
-            cs.send(response.encode())
+        server_utils.coloured_text(command)
+        response = server_utils.complement_seq(argument)
+        cs.send(response.encode())
+        print(response)
 
     elif command == "REV":
-            response = server_utils.reversed_seq(argument)
-            cs.send(response.encode())
+        server_utils.coloured_text(command)
+        response = server_utils.reversed_seq(argument)
+        cs.send(response.encode())
+        print(response)
 
     elif command == "GENE":
         try:
+            server_utils.coloured_text(command)
             response = server_utils.read_sequence(argument)
             cs.send(response.encode())
+            print(response)
         except FileNotFoundError:
             response = "The requested folder has not be founded. Please, you another one."
             cs.send(response.encode())
@@ -94,9 +106,5 @@ while True:
         cs.send(str(response).encode())
     # -- Close the data socket
     cs.close()
-
-    if c_counter == 5:
-        for address in range(0, len(client_address_list)):
-            print("Client:" + str(address) + " Client IP, PORT" + str(client_address_list[address]))
 
 # ls.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) esto hace que fuerze el puerto para que lo cierre y lo pueda usar
