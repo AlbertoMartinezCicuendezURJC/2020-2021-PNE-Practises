@@ -3,7 +3,7 @@ from pathlib import Path
 import colorama
 import termcolor
 
-
+list_sequences = ["TGACGATCGATCGACTG", "CGATCGATCGATCGATCGATCAGTC", "GACTCGATCGATCGATCGATCGATCG", "TATTAGCGGCTAGCTAGCTGATCCACAGTGCATG", "GCAGTCTGCTGCATGACTGACGTACTGCACAGTCAGTCAGT"]
 GENE_FOLDER = "./sequences3/"
 
 
@@ -13,39 +13,36 @@ def print_colored(message, color):
 
 def coloured_text(message):
     if message == "GET":
-        print_colored("GET", "green")
+        print_colored(message, "green")
     elif message == "PING":
         print_colored("PING command!", "green")
     elif message == "INFO":
-        print_colored("INFO", "green")
+        print_colored(message, "green")
     elif message == "COMP":
-        print_colored("COMP", "green")
+        print_colored(message, "green")
     elif message == "REV":
-        print_colored("REV", "green")
+        print_colored(message, "green")
     else:
         print_colored("GENE", "green")
 
 def format_command(command): # esto es porque al final, si pones por ejemplo PING, siempre habra un \r\n al final
     return command.replace("\n", "").replace("\r", "")
 
-def lenght_and_percentages(sequence):
-    s = Seq(sequence)
-    lenght_sequence = s.len()
-    a, c, g, t = s.count_bases()
-    a_percentage = (a / s.len()) * 100
-    c_percentage = (c / s.len()) * 100
-    g_percentage = (g / s.len()) * 100
-    t_percentage = (t / s.len()) * 100
-    return lenght_sequence, a, c, g, t, a_percentage, c_percentage, g_percentage, t_percentage
+def get_seq(number):
+    if 0 <= int(number) <= 4:
+        return list_sequences[int(number)]
+    else:
+        return "Given number is out of range. Please, select a number between 0 and 4."
 
-
-def print_info(sequence):
-    lenght_sequence, a, c, g, t, a_percentage, c_percentage, g_percentage, t_percentage = lenght_and_percentages(sequence)
-    return "Sequence: " + str(sequence) + "\n" + "Lenght: " + str(lenght_sequence) + "\n" + "A: " + str(a) + " (" + str(a_percentage) + ") " + "\n" + "C: " + str(c) + " (" + str(c_percentage) + ") " + "\n" + "G: " + str(g) + " (" + str(g_percentage) + ") " + "\n" + "T: " + str(t) + " (" + str(t_percentage) + ") " + "\n"
 
 def complement_seq(sequence):
     s = Seq(sequence)
     return s.complement()
+
+def info_seq(sequence):
+    s = Seq(sequence)
+    seq_information = s.print_info(sequence)
+    return seq_information
 
 def reversed_seq(sequence):
     s = Seq(sequence)

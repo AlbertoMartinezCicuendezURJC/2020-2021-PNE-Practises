@@ -1,11 +1,9 @@
 import socket
 import server_utils
 
-
 PORT = 8080
 IP = "127.0.0.1"
 c_counter = 0
-list_sequences = ["TGACGATCGATCGACTG", "CGATCGATCGATCGATCGATCAGTC", "GACTCGATCGATCGATCGATCGATCG", "TATTAGCGGCTAGCTAGCTGATCCACAGTGCATG"]
 # -- Step 1: create the socket
 ls = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -52,20 +50,15 @@ while True:
         print(response)
 
     elif command == "GET":
-        try:
-            server_utils.coloured_text(command)
-            response = list_sequences[int(argument)]
-            cs.send(response.encode())
-            print(list_sequences[int(argument)])
-
-        except Exception:
-            response = "The choosen index is out of the range. Please, choose an integer number between 0 and 3"
-            cs.send(response.encode())
+        server_utils.coloured_text(command)
+        response = server_utils.get_seq(argument)
+        cs.send(response.encode())
+        print(response)
 
     elif command == "INFO":
         try:
             server_utils.coloured_text(command)
-            response = server_utils.print_info(argument)
+            response = server_utils.info_seq(argument)
             cs.send(response.encode())
             print(response)
 
@@ -74,10 +67,14 @@ while True:
             cs.send(response.encode())
 
     elif command == "COMP":
-        server_utils.coloured_text(command)
-        response = server_utils.complement_seq(argument)
-        cs.send(response.encode())
-        print(response)
+        try:
+            server_utils.coloured_text(command)
+            response = server_utils.complement_seq(argument)
+            cs.send(response.encode())
+            print(response)
+        except UnicodeDecodeError:
+            print("Invalid sequence. Please, choose a correct one.")
+
 
     elif command == "REV":
         server_utils.coloured_text(command)

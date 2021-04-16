@@ -154,13 +154,13 @@ class Seq:
 
     def reverse(self):
         if self.strbases == Seq.INVALID_SEQUENCE or self.strbases == Seq.NULL_SEQUENCE:
-            return self.strbases
+            return "Invalid sequence. Please, choose a correct one."
         else:
             return self.strbases[::-1]
 
     def complement(self):
         if self.strbases == Seq.INVALID_SEQUENCE or self.strbases == Seq.NULL_SEQUENCE:
-            return self.strbases
+            return "Invalid sequence. Please, choose a correct one."
         else:
             complement_seq = ""
             for base in self.strbases:
@@ -192,6 +192,18 @@ class Seq:
         else:
             return "G"
 
+    def percentages(self):
+        a, c, g, t = self.count_bases()
+        a_percentage = (a / self.len()) * 100
+        c_percentage = (c / self.len()) * 100
+        g_percentage = (g / self.len()) * 100
+        t_percentage = (t / self.len()) * 100
+        return a_percentage, c_percentage, g_percentage, t_percentage
+
+    def print_info(self, sequence):
+        a, c, g, t = self.count_bases()
+        a_percentage, c_percentage, g_percentage, t_percentage = self.percentages()
+        return "Sequence: " + str(sequence) + "\n" + "Lenght: " + str(self.len()) + "\n" + "A: " + str(a) + " (" + str(a_percentage) + ") " + "\n" + "C: " + str(c) + " (" + str(c_percentage) + ") " + "\n" + "G: " + str(g) + " (" + str(g_percentage) + ") " + "\n" + "T: " + str(t) + " (" + str(t_percentage) + ") " + "\n"
 
 
 def test_sequences():
