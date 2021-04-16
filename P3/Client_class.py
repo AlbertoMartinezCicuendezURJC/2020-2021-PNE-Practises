@@ -1,5 +1,4 @@
 import socket
-import termcolor
 
 class Client:
     def __init__(self, ip, port):
@@ -38,9 +37,6 @@ class Client:
         # Return the response
         return response
 
-    def debug_talk(self, message):
-        msg = self.debug_talk(message)
-        return msg
 
 
 
