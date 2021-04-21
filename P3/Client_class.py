@@ -29,7 +29,7 @@ class Client:
         s.send(msg.encode())
 
         # Receive data
-        response = s.recv(2048).decode("utf-8") #esto es como un block, hasta que no haya mensajes aqui te quedas
+        response = s.recv(2048).decode("utf-8")
 
         # Close the socket
         s.close()

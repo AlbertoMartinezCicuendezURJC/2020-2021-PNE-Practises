@@ -43,6 +43,7 @@ while True:
         command = formatted_message[0]
         argument = formatted_message[1]
 
+
     if command == "PING":
         server_utils.coloured_text(command)
         response = "OK!"
