@@ -50,7 +50,7 @@ def process_client(s):
         try:
             body = read_html_file(FOLDER + path_name.split('/')[-1] + "html")
         except FileNotFoundError:
-            body = read_html_file(FOLDER + "Error.html")
+            body = read_html_file(FOLDER + "error.html")
     else:
         body = read_html_file(FOLDER + "Error.html")
 

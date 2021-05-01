@@ -7,35 +7,8 @@ import server_utils
 # Define the Server's port
 PORT = 8080
 list_sequences = ["TGACGATCGATCGACTG", "CGATCGATCGATCGATCGATCAGTC", "GACTCGATCGATCGATCGATCGATCG", "TATTAGCGGCTAGCTAGCTGATCCACAGTGCATG", "GCAGTCTGCTGCATGACTGACGTACTGCACAGTCAGTCAGT"]
-list_genes = ["ADA", "U5", "FRAT1"]
+list_genes = ["ADA", "U5", "FRAT1", "FXN", "RNU6_269P"]
 
-
-BASES_INFORMATION = {
-    "A":{"link": "https://es.wikipedia.org/wiki/Adenina",
-        "formula": "C5H5N5",
-        "name": "ADENINE",
-         "colour": "green"
-
-    },
-    "C": {"link": "https://es.wikipedia.org/wiki/Citosina",
-          "formula": "C4H5N3O",
-          "name": "CYTOSINE",
-            "colour": "blue"
-
-          },
-    "T": {"link": "https://es.wikipedia.org/wiki/Timina",
-          "formula": "C5H6N2O2",
-          "name": "Thymine",
-        "colour": "red"
-
-          },
-    "G": {"link": "https://es.wikipedia.org/wiki/Guanina",
-          "formula": "C5H5N5O",
-          "name": "GUANINE",
-            "colour": "pink"
-
-          }
-}
 
 # -- This is for preventing the error: "Port already in use"
 socketserver.TCPServer.allow_reuse_address = True
@@ -82,23 +55,23 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             contents = server_utils.get_seq(list_sequences, number_sequence)
 
         elif path_name.startswith('/operation'):
-            sequence = arguments['sequence'][0]
-            calculation = arguments['calculation'][0]
-
-            if calculation == 'Info':
-                try:
-                    contents = server_utils.info_seq(sequence)
-                except ZeroDivisionError:
-                    error_msg = 'Incorrect sequence, please choose a valid one.'
-                    context = {'sequence': sequence, 'result': error_msg, 'operation': 'Info'}
-                    contents = server_utils.read_template_htm_file('./html/info.html').render(context=context)
-            elif calculation == 'Comp':
-                contents = server_utils.complement_seq(sequence)
+            if arguments == {} or len(arguments) == 1:
+                contents = server_utils.read_template_htm_file('./html/error2.html').render()
             else:
-                contents = server_utils.reversed_seq(sequence)
+                sequence = arguments['sequence'][0]
+                calculation = arguments['calculation'][0]
 
+                if calculation == 'Info':
+                        contents = server_utils.info_seq(sequence)
+
+                elif calculation == 'Comp':
+                    contents = server_utils.complement_seq(sequence)
+
+                else:
+                    contents = server_utils.reversed_seq(sequence)
         else:
             contents = server_utils.read_template_htm_file('./html/Error.html').render()
+
 
         # Generating the response message
         self.send_response(200)  # -- Status line: OK! # it means success

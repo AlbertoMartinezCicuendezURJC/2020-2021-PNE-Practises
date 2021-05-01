@@ -9,8 +9,6 @@ list_sequences = ["TGACGATCGATCGACTG",
                   "TATTAGCGGCTAGCTAGCTGATCCACAGTGCATG",
                   "GCAGTCTGCTGCATGACTGACGTACTGCACAGTCAGTCAGT"]
 
-
-
 def print_colored(message, color):
     colorama.init(strip="False")
     print(termcolor.colored(message, color))
@@ -47,20 +45,34 @@ def gene(seq_name):
 
 def complement_seq(sequence):
     s = Seq(sequence)
-    context = {'sequence': sequence, 'result': s.complement(), 'operation': 'Complement'}
-    contents = read_template_htm_file('./html/complement.html').render(context=context)
+
+    if s.complement() != Seq.ERROR_MSG:
+        context = {'sequence': sequence, 'result': s.complement(), 'operation': 'Complement'}
+        contents = read_template_htm_file('./html/complement.html').render(context=context)
+    else:
+        context = {'sequence':sequence, 'message_error':Seq.ERROR_MSG}
+        contents = read_template_htm_file('./html/invalid_seqs.html').render(context=context)
     return contents
 
 def info_seq(sequence):
     s = Seq(sequence)
-    context = {'sequence': sequence, 'result': s.print_info(sequence), 'operation': 'Info'}
-    contents = read_template_htm_file('./html/info.html').render(context=context)
+    if s.complement() != Seq.ERROR_MSG:
+        context = {'sequence': sequence, 'result': s.print_info(sequence), 'operation': 'Information'}
+        contents = read_template_htm_file('./html/info.html').render(context=context)
+    else:
+        context = {'sequence': sequence, 'message_error': Seq.ERROR_MSG}
+        contents = read_template_htm_file('./html/invalid_seqs.html').render(context=context)
     return contents
 
 def reversed_seq(sequence):
     s = Seq(sequence)
-    context = {'sequence': sequence, 'result': s.reverse(), 'operation': 'Reverse'}
-    contents = read_template_htm_file('./html/reversed.html').render(context=context)
+
+    if s.complement() != Seq.ERROR_MSG:
+        context = {'sequence': sequence, 'result': s.reverse(), 'operation': 'Reverse'}
+        contents = read_template_htm_file('./html/reversed.html').render(context=context)
+    else:
+        context = {'sequence': sequence, 'message_error': Seq.ERROR_MSG}
+        contents = read_template_htm_file('./html/invalid_seqs.html').render(context=context)
     return contents
 
 def read_template_htm_file(filename):
