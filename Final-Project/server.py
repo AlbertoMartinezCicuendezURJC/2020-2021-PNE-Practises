@@ -1,19 +1,16 @@
 import http.server
 import socketserver
 import termcolor
-from pathlib import Path
+from urllib.parse import urlparse, parse_qs
+import server_utils
+
 
 # Define the Server's port
 PORT = 8080
-FOLDER = "./html/"
-
-def read_html_file(filename):
-    content = Path(filename).read_text()
-    return content
-
 
 # -- This is for preventing the error: "Port already in use"
 socketserver.TCPServer.allow_reuse_address = True
+
 
 # Class with our Handler. It is a called derived from BaseHTTPRequestHandler
 # It means that our class inheritates all his methods and properties
@@ -31,24 +28,41 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         # It is a happy server: It always returns a message saying
         # that everything is ok
         # Message to send back to the client
+        o = urlparse(self.path) # object
+        path_name = o.path
+        arguments = parse_qs(o.query)
+        print('Resource requested: ', path_name)
+        print('Parameters', arguments)
 
-        file_name = self.path.strip("/")  # /info/A.html --> info/A.html
+        context = {}
+        if path_name == "/":
+            contents = server_utils.read_template_htm_file('./html/index.html').render()
 
-        try:
-            if file_name == "" or file_name == "index.html":
-                contents = read_html_file("./html/index.html")
-            elif file_name == "info/A":
-                contents = read_html_file("./html/info/A.html")
-            elif file_name == "info/C":
-                contents = read_html_file("./html/info/C.html")
-            elif file_name == "info/G":
-                contents = read_html_file("./html/info/G.html")
-            elif file_name == "info/T":
-                contents = read_html_file("./html/info/T.html")
+        elif path_name == '/karyotype':
+            try:
+                specie = arguments['specie'][0]
+                contents = server_utils.print_karyotype(specie)
+            except KeyError:
+                contents = server_utils.read_template_htm_file('./html/Error.html').render()
+            except UnicodeEncodeError:
+                contents = server_utils.read_template_htm_file('./html/Error.html').render()
+
+        elif path_name == '/chromosomeLength':
+            if arguments == {} or len(arguments) == 1:
+                contents = server_utils.read_template_htm_file('./html/Error.html').render()
+
             else:
-                contents = read_html_file("./html/" + file_name)
-        except FileNotFoundError:
-            contents = read_html_file("./html/" + "Error.html")
+                specie = arguments['specie'][0]
+                chr_number = arguments['chromo'][0]
+                contents = server_utils.print_chr_length(specie, chr_number)
+
+        elif path_name == '/listSpecies':
+            if arguments != {}:
+                limit = arguments['limit'][0]
+
+
+        else:
+            contents = server_utils.read_template_htm_file('./html/Error.html').render()
 
 
         # Generating the response message

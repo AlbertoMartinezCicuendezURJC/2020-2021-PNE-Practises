@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Karyotype!</title>
+      </head>
+      <body style="background-color: #90ee90;">
+        <h1>The name of the chromosomes are:</h1><br>
+        {% for chr in context.karyotype %}
+          {{chr}}<br>
+        {% endfor %}
+        <a href="/">Main Page</a>
+      </body>
+    </html>

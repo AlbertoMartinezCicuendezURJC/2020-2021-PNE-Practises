@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Species!</title>
+      </head>
+      <body style="background-color: #90ee90;">
+        <p>The total number of species is: {{context.counter}}</p><br>
+        <p>The limit number established was: {{context.limit}}</p><br>
+        <p>The name of the species are:</p>
+        {% for sp in context.specie %}
+          {{sp}}<br>
+        {% endfor %}
+        <a href="/">Main Page</a>
+      </body>
+    </html>

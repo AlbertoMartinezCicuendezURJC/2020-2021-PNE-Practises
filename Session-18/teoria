@@ -1,0 +1,7 @@
+Los elementos del json son arrays
+Las keys solo pueden ser STRINGS
+jsonstring = Path(people-1.json).read_text() te da una STRING con la info
+serialitation = convertir un data structure en bytes
+deserialitation = convertir los bytes back in a data structure
+resources = endpoints , a resource can be just a gene
+un array of people puedes empezar un json con una lista en vez de dict

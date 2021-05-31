@@ -1,0 +1,225 @@
+---> geneSeq endpoint
+
+* TEST 1:
+
+* Input:
+
+http://127.0.0.1:8080/geneSeq?gene=FRAT1
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Green server</title>
+      </head>
+      <body style="background-color: #90ee90;">
+        <h1>GENE ADA</h1>
+        <textarea id = "gene_content" name="gene_bases" rows="5" cols="5">
+            CGGCTCCCGCGGCTGCAGGCGCGCGGCTAGAGTGCCTGGCGGGCTCCGGCTTCCGCGTCCGCCCCGGCCCCGGTCCAGACTTAGTCTTCAGCTCCGCGCCCGCTCCGCCGCGGCCCACCGCGCCCGCC
+            GGCAGCCGAGCCCCCAGCGACGCCCGCACAGCTCCGGGTGCCCAGACAGGGGGCCATGCCGTGCCGGAGGGAGGAGGAAGAGGAAGCCGGCGAGGAGGCGGAGGGGGAGGAAGAGGAGGAGGACAGCT
+            TCCTCCTACTGCAGCAGTCAGTGGCGCTGGGCAGCTCGGGCGAGGTGGACCGGCTGGTGGCCCAGATCGGCGAGACGCTGCAGCTGGACGCGGCGCAGCACAGCCCGGCCTCGCCGTGCGGGCCC
+            CCGGGGGCGCCGCTGCGGGCCCCGGGGCCCCTGGCTGCGGCGGTGCCGGCGGACAAGGCCAGGTCCCCGGCGGTGCCGCTGCTGCTGCCGCCCGCGTTGGCGGAGACTGTGGGCCCGGCGCCCCCTGG
+            GGTCCTGCGCTGCGCCCTGGGGGACCGCGGCCGCGTGCGGGGCCGCGCTGCGCCCTACTGCGTGGCCGAGCTCGCCACAGGCCCCAGCGCGCTGTCCCCACTGCCCCCTCAGGCCGACCTTGATGGGC
+            CTCCGGGAGCTGGCAAGCAGGGCATCCCGCAGCCGCTGTCGGGTCCGTGCCGGCGAGGATGGCTCCGGGGCGCCGCCGCCTCCCGCCGCCTGCAGCAGCGACGCGGGTCCCAACCAGAAACCCGCACA
+            GGCGACGACGACCCGCACCGGCTTCTGCAGCAGCTAGTGCTCTCTGGAAACCTCATCAAGGAGGCCGTGCGAAGGCTTCATTCGCGACGGCTGCAGTTACGTGCAAAGCTTCCCCAACGCCCGCTCCT
+            GGGACCTCTGTCGGCCCCGGTGCATGAACCCCCTTCGCCTCGCAGCCCTCGCGCGGCCTGCAGTGACCCTGGCGCCTCCGGGAGGGCGCAGCTCAGAACTGGCGACGGCGTTCTTGTGCCTGGCAGCT
+            AACACGCCCGGGGTGGCCACAGCGCCAGCCTCAGACTGGAGGGCAAGGGGTTCCCTTGAGGGCTGCAGTTCTACTCAGGCTGGTGGAGAACTCTGGCTTTTGGAAGCGAGAGTAAAAAGCTAATGACG
+            AGGAACCGAAAAATCGCGAGTGTTTCGCGGGTAACTGGGGTTGAGGGCCAAAATATTTGGAATGAAGGACTTTGGCCCTATTTAAGGCAGATTTTACAGAGCGCACCTCAAACGTACAAGTCAGTAGG
+            ACTCCTTATTTGGCGTGACCCGACCTGGCCGCGGAGCCTGCATTTCCTCGCAGCCTCTCAGTGCCCTCCAGCCCCGCGACCATGTGGCCACAATCCACGCTTCTCCGGATCGCGGTGCGCCGGAACCA
+            CGGAGGATGATGCCAGTTACTTGCTTTACCTTTTCAGGGCTGGCTCCTGATCCACTTTGGGGGAGGAGAACATGAGTAGATAATTTCAGGGTGCAGCCCAATCTGCCAGACTTAAAAAAACCATCTTG
+            TGTCTTTGGAGGTGCTGCTTAATACCAAACATGCGGTGCCATGAAGGGACCCTTTGGGGGTTGAATAGGAGTTAACCCCTGCGCTCTCTTTGCAACTGTCTCTCTTCTCAGAGTGGTGGGGGAAGGCT
+            GTACGACACGGGTGGGGAAAGGAGGTGGGGGCGGGGAGTATTGAATGGTGGTGGAAGGGTAGAGAGGCGCGGAGTGAACCCCACGCCCTGTCTAAAGTGTATTTTCAGAGCCGGCCCGCCTCTCCTCG
+            GTTCAAGGTCACTGTTTCCTGGGCACGCACTGGGTTGCGGGACAGAGTAGCCAGGTTCTGCCGGTGCTCGGAGAAGAGCGCAGTGTTTTGCAAGTGCTGGAGTCTCCTGAGGACACGCGCGTCGCCGC
+            CACCGCGGGTGTGGGAAAGCGCGGACGTGCTGGGCGGCTGTGCTTCGGTAGGCGACCACCGCCCCTGGCCGCGCTCCGGGCTTTCACGGAAACTCCCGAGACCGGGCCCTGGGTTCCTCCTCTCCTAC
+            TCGGCTCTGCAGTCCTACTCAAGCGGGTGGCTCTGGGATCCTGGGGGCCTGGGTTGGGGGCTAGGGAGACGCCATGTGATGGACACTCCAGGGACACACAGCCTAGCACAGCAGCTTATAATGGGCTC
+            TCCGGGGCCATTTGCAATAACAGCTGCAATTCCCTGGATAGACGAGTTGATTTCCTCCCTCTGCCCCTCCCCCAGCCATGCCAGCTGGCCTTTGTAAGTGCAGGAAACCGAGTAGAAAATGTGACCCT
+            CCAAATGGAGAAGCTGCAGGCTTTGCCATTGTGAACCATGGTGAAGTGCTTGGAACATACTGTTCACTCACTCTAAAGGCGCTGAGACTGTGCTGTTGTTCTCGTTTTTATAGTCAATGGCTTGTTCA
+            TCATCCAGATGTGGCTACTGACATATCTACACTTCGCACCGGAGTGTCTGGAATTGTGGCTATCCTGATTATAGGATTTTAACTTAACTGAAATGCCTGCTTTGAATAAATGTGTTGGGTTTTTTGTT
+            TGGTTTTATTTTATACTTGCCATCAGTGAAAAAGATGTACAGAACACATTTCTCTGATCTCCATAAACATGAAAACACTTGAAATCTC
+        </textarea> <br>
+        <a href="/">Main Page</a>
+      </body>
+    </html>
+
+* TEST 2:
+
+* Input:
+
+http://127.0.0.1:8080/geneSeq?gene=moon
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>ERROR!</title>
+      </head>
+      <body style="background-color: #cf4c4c;">
+        <h1>Gene not found!</h1>
+        <p>The gene 'moon' was not found. Make sure you have write it correctly or choose another one.</p>
+      <a href="/">Main Page</a>
+      </body>
+    </html>
+
+* TEST 3:
+
+* Input:
+
+http://127.0.0.1:8080/geneSeq?gene=
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>ERROR!</title>
+      </head>
+      <body style="background-color: #e34c4c;">
+        <h1>ERROR</h1>
+        <p>You did not request anything or you missed one of them. Please, check it and try again.</p>
+      <a href="/">Main Page</a>
+      </body>
+    </html>
+
+---> geneInfo endpoint
+
+* TEST 1:
+
+* Input:
+
+http://127.0.0.1:8080/geneInfo?gene=ADA
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>INFORMATION!</title>
+      </head>
+      <body style="background-color: #90ee90;">
+        <h1>GENE ADA</h1>
+        <p>The start of the gene is: 44619522</p>
+        <p>The end of the gene is: 44652233</p>
+        <p>The chromosome name is: GRCh38</p>
+        <p>The id is: ENSG00000196839</p>
+        <p>The length is: 32712</p>
+        <a href="/">Main Page</a>
+      </body>
+    </html>
+
+* TEST 2:
+
+* Input:
+
+http://127.0.0.1:8080/geneInfo?gene=sun
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>ERROR!</title>
+      </head>
+      <body style="background-color: #cf4c4c;">
+        <h1>Gene not found!</h1>
+        <p>The gene 'sun' was not found. Make sure you have write it correctly or choose another one.</p>
+      <a href="/">Main Page</a>
+      </body>
+    </html>
+
+* TEST 3:
+
+* Input:
+
+http://127.0.0.1:8080/geneInfo?gene=
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>ERROR!</title>
+      </head>
+      <body style="background-color: #e34c4c;">
+        <h1>ERROR</h1>
+        <p>You did not request anything or you missed one of them. Please, check it and try again.</p>
+      <a href="/">Main Page</a>
+      </body>
+    </html>
+
+
+---> geneCalc endpoint
+
+* TEST 1:
+
+* Input:
+
+http://127.0.0.1:8080/geneCalc?gene=FXN
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Chromosome Lenght!</title>
+      </head>
+      <body style="background-color: #90ee90;">
+      <p>The total length of the gene is: 43326</p><br>
+      <p>The percentage of the base 'A': 26.485% </p><br>
+      <p>The percentage of the base 'C': 23.115% </p><br>
+      <p>The percentage of the base 'G': 23.09% </p><br>
+      <p>The percentage of the base 'T': 27.309% </p><br>
+      <a href="/">Main Page</a>
+      </body>
+    </html>
+
+* TEST 2:
+
+* Input:
+
+http://127.0.0.1:8080/geneCalc?gene=car
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>ERROR!</title>
+      </head>
+      <body style="background-color: #cf4c4c;">
+        <h1>Gene not found!</h1>
+        <p>The gene 'car' was not found. Make sure you have write it correctly or choose another one.</p>
+      <a href="/">Main Page</a>
+      </body>
+    </html>
+
+
+* TEST 3:
+
+* Input:
+
+http://127.0.0.1:8080/geneCalc?gene=
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>ERROR!</title>
+      </head>
+      <body style="background-color: #e34c4c;">
+        <h1>ERROR</h1>
+        <p>You did not request anything or you missed one of them. Please, check it and try again.</p>
+      <a href="/">Main Page</a>
+      </body>
+    </html>

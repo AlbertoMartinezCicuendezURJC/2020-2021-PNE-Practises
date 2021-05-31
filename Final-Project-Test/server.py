@@ -3,12 +3,11 @@ import socketserver
 import termcolor
 from urllib.parse import urlparse, parse_qs
 import server_utils
+from ensembl_class import Ensembl
+
 
 # Define the Server's port
 PORT = 8080
-list_sequences = ["TGACGATCGATCGACTG", "CGATCGATCGATCGATCGATCAGTC", "GACTCGATCGATCGATCGATCGATCG", "TATTAGCGGCTAGCTAGCTGATCCACAGTGCATG", "GCAGTCTGCTGCATGACTGACGTACTGCACAGTCAGTCAGT"]
-list_genes = ["ADA", "U5", "FRAT1", "FXN", "RNU6_269P"]
-
 
 # -- This is for preventing the error: "Port already in use"
 socketserver.TCPServer.allow_reuse_address = True
@@ -36,39 +35,57 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         print('Resource requested: ', path_name)
         print('Parameters', arguments)
 
-        file_name = self.path.strip("/")  # /info/A.html --> info/A.html
         context = {}
         if path_name == "/":
-            context['n_sequences'] = len(list_sequences)
-            context['list_genes'] = list_genes
-            contents = server_utils.read_template_htm_file('./html/index.html').render(context=context)
+            contents = server_utils.read_template_htm_file('./html/index.html').render()
 
-        elif path_name == '/ping':
-            contents = server_utils.read_template_htm_file('./html/ping.html').render()
+        elif path_name == '/karyotype':
+            try:
+                specie = arguments['specie'][0]
+                contents = server_utils.print_karyotype(specie)
+            except KeyError:
+                contents = server_utils.read_template_htm_file('./html/Error.html').render()
+            except UnicodeEncodeError:
+                contents = server_utils.read_template_htm_file('./html/Error.html').render()
 
-        elif path_name == '/gene':
-            gene = arguments['gene'][0]
-            contents = server_utils.gene(gene)
-
-        elif path_name == '/get':
-            number_sequence = arguments['sequence'][0]
-            contents = server_utils.get_seq(list_sequences, number_sequence)
-
-        elif path_name.startswith('/operation'):
+        elif path_name == '/chromosomeLength':
             if arguments == {} or len(arguments) == 1:
-                contents = server_utils.read_template_htm_file('./html/error2.html').render()
+                contents = server_utils.read_template_htm_file('./html/Error.html').render()
+
             else:
-                sequence = arguments['sequence'][0]
-                calculation = arguments['calculation'][0]
+                specie = arguments['specie'][0]
+                chr_number = arguments['chromo'][0]
+                contents = server_utils.print_chr_length(specie, chr_number)
 
-                if calculation == 'Info':
-                    contents = server_utils.info_seq(sequence)
+        elif path_name == '/listSpecies':
+            if arguments != {}:
+                limit = arguments['limit'][0]
+                contents = server_utils.print_limit(limit)
+            else:
+                limit = Ensembl.counter_species()
+                contents = server_utils.print_limit(limit)
 
-                elif calculation == 'Comp':
-                    contents = server_utils.complement_seq(sequence)
+        elif path_name == '/geneSeq':
+            if arguments != {}:
+                gene = arguments['gene'][0]
+                contents = server_utils.print_sequence(gene)
+            else:
+                contents = server_utils.read_template_htm_file('./html/Error.html').render()
 
-                else:
-                    contents = server_utils.reversed_seq(sequence)
+        elif path_name == '/geneInfo':
+            if arguments != {}:
+                gene = arguments['gene'][0]
+                contents = server_utils.print_info(gene)
+            else:
+                contents = server_utils.read_template_htm_file('./html/Error.html').render()
+
+        elif path_name == '/geneCalc':
+            if arguments != {}:
+                gene = arguments['gene'][0]
+                contents = server_utils.print_length_percentages(gene)
+            else:
+                contents = server_utils.read_template_htm_file('./html/Error.html').render()
+
         else:
             contents = server_utils.read_template_htm_file('./html/Error.html').render()
 
