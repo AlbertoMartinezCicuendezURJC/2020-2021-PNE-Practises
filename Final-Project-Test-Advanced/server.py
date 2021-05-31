@@ -88,47 +88,95 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     content_type = 'text/html'
 
         elif path_name == '/listSpecies':
-            if 'json' in arguments.keys() and arguments['json'][0] == '1':
+            if 'json' in arguments.keys() and arguments['json'][0] == '1' and len(arguments) == 2:
+                limit = arguments['limit'][0]
                 param_json = True
-                pass
+                contents = server_utils.print_limit(limit, param_json)
+                contents = json.dumps(contents)
+                content_type = 'application/json'
 
             else:
-                if arguments != {}:
-                    limit = arguments['limit'][0]
-                    contents = server_utils.print_limit(limit)
-                    content_type = 'text/html'
-                else:
+                if arguments == {} or (len(arguments) == 1 and 'json' in arguments.keys()):
                     limit = Ensembl.counter_species()
-                    contents = server_utils.print_limit(limit)
+
+                    if 'json' in arguments.keys():
+                        param_json = True
+                        contents = server_utils.print_limit(limit, param_json)
+                        contents = json.dumps(contents)
+                        content_type = 'application/json'
+
+                    else:
+                        param_json = False
+                        contents = server_utils.print_limit(limit, param_json)
+                        content_type = 'text/html'
+
+
+                else:
+                    limit = arguments['limit'][0]
+                    param_json = False
+                    contents = server_utils.print_limit(limit, param_json)
                     content_type = 'text/html'
+
 
 
         elif path_name == '/geneSeq':
-            if arguments != {}:
+            if 'json' in arguments.keys() and arguments['json'][0] == '1' and len(arguments) == 2:
                 gene = arguments['gene'][0]
-                contents = server_utils.print_sequence(gene)
-                content_type = 'text/html'
+                param_json = True
+                contents = server_utils.print_sequence(gene, param_json)
+                contents = json.dumps(contents)
+                content_type = 'application/json'
+
             else:
-                contents = server_utils.read_template_htm_file('html/Error_blank.html').render()
-                content_type = 'text/html'
+                if arguments == {} or (len(arguments) == 1 and 'json' in arguments.keys()):
+                    contents = server_utils.read_template_htm_file('html/Error_blank.html').render()
+                    content_type = 'text/html'
+
+                else:
+                    gene = arguments['gene'][0]
+                    param_json = False
+                    contents = server_utils.print_sequence(gene, param_json)
+                    content_type = 'text/html'
+
 
         elif path_name == '/geneInfo':
-            if arguments != {}:
+            if 'json' in arguments.keys() and arguments['json'][0] == '1' and len(arguments) == 2:
                 gene = arguments['gene'][0]
-                contents = server_utils.print_info(gene)
-                content_type = 'text/html'
+                param_json = True
+                contents = server_utils.print_info(gene, param_json)
+                contents = json.dumps(contents)
+                content_type = 'application/json'
+
             else:
-                contents = server_utils.read_template_htm_file('html/Error_blank.html').render()
-                content_type = 'text/html'
+                if arguments == {} or (len(arguments) == 1 and 'json' in arguments.keys()):
+                    contents = server_utils.read_template_htm_file('html/Error_blank.html').render()
+                    content_type = 'text/html'
+
+                else:
+                    gene = arguments['gene'][0]
+                    param_json = False
+                    contents = server_utils.print_info(gene, param_json)
+                    content_type = 'text/html'
+
 
         elif path_name == '/geneCalc':
-            if arguments != {}:
+            if 'json' in arguments.keys() and arguments['json'][0] == '1' and len(arguments) == 2:
                 gene = arguments['gene'][0]
-                contents = server_utils.print_length_percentages(gene)
-                content_type = 'text/html'
+                param_json = True
+                contents = server_utils.print_calc(gene, param_json)
+                contents = json.dumps(contents)
+                content_type = 'application/json'
+
             else:
-                contents = server_utils.read_template_htm_file('html/Error_blank.html').render()
-                content_type = 'text/html'
+                if arguments == {} or (len(arguments) == 1 and 'json' in arguments.keys()):
+                    contents = server_utils.read_template_htm_file('html/Error_blank.html').render()
+                    content_type = 'text/html'
+
+                else:
+                    gene = arguments['gene'][0]
+                    param_json = False
+                    contents = server_utils.print_calc(gene, param_json)
+                    content_type = 'text/html'
 
         else:
             contents = server_utils.read_template_htm_file('./html/Error.html').render()

@@ -54,11 +54,7 @@ class Ensembl:
         response = connection.getresponse()
         if response.status == 200:
             response = json.loads(response.read().decode())
-            specie_name_list = []
-
-            for n in range(0, self.limit):
-                specie_name_list.append(response['species'][n]['display_name'])
-            return specie_name_list, Ensembl.counter_species()
+            return response, Ensembl.counter_species()
 
         elif response.status == 404:
             return Ensembl.FAIL_CONNECTION_ERROR
