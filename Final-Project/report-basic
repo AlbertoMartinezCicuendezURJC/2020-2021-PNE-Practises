@@ -383,7 +383,7 @@ http://127.0.0.1:8080/listSpecies?limit=hello
       </head>
       <body style="background-color: #e34c4c;">
         <h1>ERROR</h1>
-        <p>The limit 'hello' is not a number. Please, choose an INTEGER number and try again.</p>
+        <p>The limit 'hello' is not an integer number. Please, choose a correct value and try again.</p>
       <a href="/">Main Page</a>
       </body>
     </html>
@@ -453,7 +453,7 @@ http://127.0.0.1:8080/karyotype?specie=hello
       </head>
       <body style="background-color: #cf4c4c;">
         <h1>Specie not found!</h1>
-        <p>The specie 'hello' was not found. Make sure you have write it correctly or choose another one</p>
+        <p>The specie 'hello' was not found. Make sure you have write it correctly or choose another one.</p>
       <a href="/">Main Page</a>
       </body>
     </html>
@@ -607,7 +607,7 @@ http://127.0.0.1:8080/chromosomeLength?specie=human&chromo=bye
       </head>
       <body style="background-color: #e34c4c;">
         <h1>ERROR</h1>
-        <p>The chromosome number 'bye' is not a number. Please, choose an INTEGER number and try again.</p>
+        <p>The chromosome name 'bye' does not belong to this specie. Please, choose a correct value and try again.</p>
       <a href="/">Main Page</a>
       </body>
     </html>

@@ -380,7 +380,7 @@ http://127.0.0.1:8080/listSpecies?limit=hey
       </head>
       <body style="background-color: #e34c4c;">
         <h1>ERROR</h1>
-        <p>The limit 'hey' is not a number. Please, choose an INTEGER number and try again.</p>
+        <p>The limit 'hey' is not an integer number. Please, choose a correct value and try again.</p>
       <a href="/">Main Page</a>
       </body>
     </html>
@@ -445,7 +445,7 @@ http://127.0.0.1:8080/karyotype?specie=bottle
       </head>
       <body style="background-color: #cf4c4c;">
         <h1>Specie not found!</h1>
-        <p>The specie 'bottle' was not found. Make sure you have write it correctly or choose another one</p>
+        <p>The specie 'bottle' was not found. Make sure you have write it correctly or choose another one.</p>
       <a href="/">Main Page</a>
       </body>
     </html>
@@ -480,7 +480,7 @@ http://127.0.0.1:8080/karyotype?specie=
 
 * Input:
 
-http://127.0.0.1:8080/chromosomeLength?specie=mouse&chromo=4
+http://127.0.0.1:8080/chromosomeLength?specie=lepisosteus+oculatus&chromo=LG1
 
 * output:
 
@@ -491,9 +491,9 @@ http://127.0.0.1:8080/chromosomeLength?specie=mouse&chromo=4
         <title>Chromosome Lenght!</title>
       </head>
       <body style="background-color: #90ee90;">
-      <p>The specie selected was: mouse</p><br>
-      <p>The chromosome selected was: 4</p><br>
-      <p>The lenght of the chromosme is: 156860686</p><br>
+      <p>The specie selected was: lepisosteus oculatus</p><br>
+      <p>The chromosome selected was: LG1</p><br>
+      <p>The lenght of the chromosme is: 69065196</p><br>
         <a href="/">Main Page</a>
       </body>
     </html>
@@ -502,7 +502,7 @@ http://127.0.0.1:8080/chromosomeLength?specie=mouse&chromo=4
 
 * Input:
 
-http://127.0.0.1:8080/chromosomeLength?specie=mouse&chromo=
+http://127.0.0.1:8080/chromosomeLength?specie=cat&chromo=
 
 * output:
 
@@ -523,7 +523,7 @@ http://127.0.0.1:8080/chromosomeLength?specie=mouse&chromo=
 
 * Input:
 
-http://127.0.0.1:8080/chromosomeLength?specie=&chromo=4
+http://127.0.0.1:8080/chromosomeLength?specie=&chromo=A2
 
 * output:
 
@@ -566,7 +566,7 @@ http://127.0.0.1:8080/chromosomeLength?specie=&chromo=
 
 * Input:
 
-http://127.0.0.1:8080/chromosomeLength?specie=hola&chromo=4
+http://127.0.0.1:8080/chromosomeLength?specie=plane&chromo=4
 
 * output:
 
@@ -578,7 +578,7 @@ http://127.0.0.1:8080/chromosomeLength?specie=hola&chromo=4
       </head>
       <body style="background-color: #cf4c4c;">
         <h1>{{context.error_msg}}</h1>
-        <p>The specie 'hola' was not found. Make sure you have write it correctly or choose another one.</p>
+        <p>The specie 'plane' was not found. Make sure you have write it correctly or choose another one.</p>
       <a href="/">Main Page</a>
       </body>
     </html>
@@ -587,7 +587,7 @@ http://127.0.0.1:8080/chromosomeLength?specie=hola&chromo=4
 
 * Input:
 
-http://127.0.0.1:8080/chromosomeLength?specie=human&chromo=bye
+http://127.0.0.1:8080/chromosomeLength?specie=human&chromo=cake
 
 * output:
 
@@ -599,7 +599,7 @@ http://127.0.0.1:8080/chromosomeLength?specie=human&chromo=bye
       </head>
       <body style="background-color: #e34c4c;">
         <h1>ERROR</h1>
-        <p>The chromosome number 'bye' is not a number. Please, choose an INTEGER number and try again.</p>
+        <p>The chromosome name 'cake' does not belong to this specie. Please, choose a correct value and try again.</p>
       <a href="/">Main Page</a>
       </body>
     </html>
@@ -654,7 +654,7 @@ http://127.0.0.1:8080/geneSeq?gene=FRAT1
 
 * Input:
 
-http://127.0.0.1:8080/geneSeq?gene=moon
+http://127.0.0.1:8080/geneSeq?gene=truck
 
 * output:
 
@@ -666,7 +666,7 @@ http://127.0.0.1:8080/geneSeq?gene=moon
       </head>
       <body style="background-color: #cf4c4c;">
         <h1>Gene not found!</h1>
-        <p>The gene 'moon' was not found. Make sure you have write it correctly or choose another one.</p>
+        <p>The gene 'truck' was not found. Make sure you have write it correctly or choose another one.</p>
       <a href="/">Main Page</a>
       </body>
     </html>

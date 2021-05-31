@@ -36,7 +36,7 @@ termcolor.cprint('==============================================================
 
 
 
-endpoint2 = "/karyotype?specie=mouse"
+endpoint2 = "/karyotype?specie=dog"
 try:
     conn.request("GET", endpoint2 + PARAM) # send the request
 except ConnectionRefusedError:
