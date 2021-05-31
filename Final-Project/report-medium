@@ -12,7 +12,7 @@ http://127.0.0.1:8080/geneSeq?gene=FRAT1
     <html lang="en" dir="ltr">
       <head>
         <meta charset="utf-8">
-        <title>Green server</title>
+        <title>Sequence!</title>
       </head>
       <body style="background-color: #90ee90;">
         <h1>GENE ADA</h1>
@@ -103,10 +103,10 @@ http://127.0.0.1:8080/geneInfo?gene=ADA
       </head>
       <body style="background-color: #90ee90;">
         <h1>GENE ADA</h1>
-        <p>The start of the gene is: 44619522</p>
+        <p>The beginning of the gene is: 44619522</p>
         <p>The end of the gene is: 44652233</p>
         <p>The chromosome name is: GRCh38</p>
-        <p>The id is: ENSG00000196839</p>
+        <p>The ID is: ENSG00000196839</p>
         <p>The length is: 32712</p>
         <a href="/">Main Page</a>
       </body>
@@ -169,9 +169,10 @@ http://127.0.0.1:8080/geneCalc?gene=FXN
     <html lang="en" dir="ltr">
       <head>
         <meta charset="utf-8">
-        <title>Chromosome Lenght!</title>
+        <title>Calculations!</title>
       </head>
       <body style="background-color: #90ee90;">
+      <h1>GENE {{context.gene}}</h1>
       <p>The total length of the gene is: 43326</p><br>
       <p>The percentage of the base 'A': 26.485% </p><br>
       <p>The percentage of the base 'C': 23.115% </p><br>

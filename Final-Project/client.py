@@ -58,7 +58,7 @@ for chromosome in dict_karyotype['karyotype']:
 termcolor.cprint('=============================================================================', 'green')
 
 
-endpoint3 = "/chromosomeLength?specie=human&chromo=X"
+endpoint3 = "/chromosomeLength?specie=mouse&chromo=X"
 try:
     conn.request("GET", endpoint3 + PARAM) # send the request
 except ConnectionRefusedError:
@@ -131,7 +131,7 @@ termcolor.cprint(info_dict['desc'].split(':')[4], 'blue')
 termcolor.cprint('The chromosome name is: ', 'magenta', end='')
 termcolor.cprint(info_dict['desc'].split(':')[1], 'blue')
 
-termcolor.cprint('The id is: ', 'magenta', end='')
+termcolor.cprint('The ID is: ', 'magenta', end='')
 termcolor.cprint(info_dict['id'], 'blue')
 
 termcolor.cprint('The length is: ', 'magenta', end='')
@@ -158,7 +158,7 @@ a_perc, c_perc, g_perc, t_perc = gene3_object.percentages()
 termcolor.cprint('GENE ', 'magenta', end='')
 termcolor.cprint(gene3, 'blue')
 
-termcolor.cprint('The length is: ', 'magenta', end='')
+termcolor.cprint('The total length of the gene is: ', 'magenta', end='')
 termcolor.cprint(gene3_object.len(), 'blue')
 
 termcolor.cprint('The percentage of the base "A": ', 'magenta', end='')
