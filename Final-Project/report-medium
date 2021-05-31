@@ -99,7 +99,7 @@ http://127.0.0.1:8080/geneInfo?gene=ADA
     <html lang="en" dir="ltr">
       <head>
         <meta charset="utf-8">
-        <title>INFORMATION!</title>
+        <title>Information!</title>
       </head>
       <body style="background-color: #90ee90;">
         <h1>GENE ADA</h1>

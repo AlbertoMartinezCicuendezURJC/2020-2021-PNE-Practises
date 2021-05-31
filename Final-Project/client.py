@@ -1,5 +1,3 @@
-# -- Example of a client that uses the HTTP.client library
-# -- for requesting the main page from the server
 import http.client
 import json
 import termcolor
@@ -7,16 +5,12 @@ from ensembl_class import Ensembl
 from Seq1 import Seq
 
 PORT = 8080
-SERVER = 'localhost' #si queremos que hable con ensembl, pondremos el ip adress del ensembl
+SERVER = 'localhost'
 PARAM = '&json=1'
 
 print(f"\nConnecting to server: {SERVER}:{PORT}\n")
 
-# Connect with the server
-conn = http.client.HTTPConnection(SERVER, PORT) # connect
-
-# -- Send the request message, using the GET method. We are
-# -- requesting the main page (/)
+conn = http.client.HTTPConnection(SERVER, PORT)
 
 endpoint1 = "/listSpecies?limit=6"
 
@@ -40,6 +34,8 @@ for n in range(0, int(limit)):
     termcolor.cprint(limit_dict['species'][n]['display_name'], 'blue')
 termcolor.cprint('=============================================================================', 'green')
 
+
+
 endpoint2 = "/karyotype?specie=mouse"
 try:
     conn.request("GET", endpoint2 + PARAM) # send the request
@@ -58,6 +54,7 @@ for chromosome in dict_karyotype['karyotype']:
 termcolor.cprint('=============================================================================', 'green')
 
 
+
 endpoint3 = "/chromosomeLength?specie=mouse&chromo=X"
 try:
     conn.request("GET", endpoint3 + PARAM) # send the request
@@ -71,6 +68,7 @@ print(f"Response received!: {chr_length_response.status} {chr_length_response.re
 chr_length_dict = json.loads(chr_length_response.read().decode())
 specie2 = endpoint3.split('?')[1].split('=')[1].split('&')[0]
 chr = endpoint3.split('?')[1].split('=')[2].split(' ')[0].split('&')[0]
+
 for dict in chr_length_dict['top_level_region']:
     if dict['name'] == chr:
         lenght = dict['length']
@@ -82,6 +80,7 @@ termcolor.cprint(chr, 'blue')
 termcolor.cprint('The chromosome lenght is: ', 'magenta', end='')
 termcolor.cprint(str(lenght), 'blue')
 termcolor.cprint('=============================================================================', 'green')
+
 
 
 endpoint4 = "/geneSeq?gene=FRAT1"

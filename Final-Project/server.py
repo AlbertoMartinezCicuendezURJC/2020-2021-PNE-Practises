@@ -46,7 +46,6 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         contents = server_utils.print_karyotype(specie, param_json)
                         content_type = 'text/html'
 
-
             except KeyError:
                 contents = server_utils.read_template_htm_file('./html/Error.html').render()
             except UnicodeEncodeError:
@@ -103,8 +102,6 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     contents = server_utils.print_limit(limit, param_json)
                     content_type = 'text/html'
 
-
-
         elif path_name == '/geneSeq':
             if 'json' in arguments.keys() and arguments['json'][0] == '1' and len(arguments) == 2:
                 gene = arguments['gene'][0]
@@ -124,7 +121,6 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     contents = server_utils.print_sequence(gene, param_json)
                     content_type = 'text/html'
 
-
         elif path_name == '/geneInfo':
             if 'json' in arguments.keys() and arguments['json'][0] == '1' and len(arguments) == 2:
                 gene = arguments['gene'][0]
@@ -143,7 +139,6 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     param_json = False
                     contents = server_utils.print_info(gene, param_json)
                     content_type = 'text/html'
-
 
         elif path_name == '/geneCalc':
             if 'json' in arguments.keys() and arguments['json'][0] == '1' and len(arguments) == 2:
