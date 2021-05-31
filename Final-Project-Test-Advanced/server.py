@@ -43,7 +43,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
         elif path_name == '/karyotype':
             try:
-                if 'json' in arguments.keys() and arguments['json'][0] == '1':
+                if 'json' in arguments.keys() and arguments['json'][0] == '1' and len(arguments) == 2:
                     specie = arguments['specie'][0]
                     param_json = True
                     contents = server_utils.print_karyotype(specie, param_json)
@@ -51,15 +51,15 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     content_type = 'application/json'
 
                 else:
-                    if arguments != {}:
+                    if arguments == {} or (len(arguments) == 1 and 'json' in arguments.keys()):
+                        contents = server_utils.read_template_htm_file('html/Error_blank.html').render()
+                        content_type = 'text/html'
+                    else:
                         specie = arguments['specie'][0]
                         param_json = False
                         contents = server_utils.print_karyotype(specie, param_json)
                         content_type = 'text/html'
 
-                    else:
-                        contents = server_utils.read_template_htm_file('html/Error_blank.html').render()
-                        content_type = 'text/html'
 
             except KeyError:
                 contents = server_utils.read_template_htm_file('./html/Error.html').render()
@@ -67,15 +67,16 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 contents = server_utils.read_template_htm_file('./html/Error.html').render()
 
         elif path_name == '/chromosomeLength':
-            if 'json' in arguments.keys() and arguments['json'][0] == '1':
+            if 'json' in arguments.keys() and arguments['json'][0] == '1' and len(arguments) == 3:
                 param_json = True
                 specie = arguments['specie'][0]
                 chr_number = arguments['chromo'][0]
                 contents = server_utils.print_chr_length(specie, chr_number, param_json)
+                contents = json.dumps(contents)
                 content_type = 'application/json'
 
             else:
-                if arguments == {} or len(arguments) == 1:
+                if arguments == {} or len(arguments) == 1 or (len(arguments) == 2 and 'json' in arguments.keys()):
                     contents = server_utils.read_template_htm_file('./html/Error_blank.html').render()
                     content_type = 'text/html'
 
@@ -87,14 +88,20 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     content_type = 'text/html'
 
         elif path_name == '/listSpecies':
-            if arguments != {}:
-                limit = arguments['limit'][0]
-                contents = server_utils.print_limit(limit)
-                content_type = 'text/html'
+            if 'json' in arguments.keys() and arguments['json'][0] == '1':
+                param_json = True
+                pass
+
             else:
-                limit = Ensembl.counter_species()
-                contents = server_utils.print_limit(limit)
-                content_type = 'text/html'
+                if arguments != {}:
+                    limit = arguments['limit'][0]
+                    contents = server_utils.print_limit(limit)
+                    content_type = 'text/html'
+                else:
+                    limit = Ensembl.counter_species()
+                    contents = server_utils.print_limit(limit)
+                    content_type = 'text/html'
+
 
         elif path_name == '/geneSeq':
             if arguments != {}:

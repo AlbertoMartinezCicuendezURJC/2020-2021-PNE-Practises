@@ -28,15 +28,8 @@ class Ensembl:
         connection.request('GET', Ensembl.ENDPOINT + self.specie + Ensembl.PARAMS)
         response = connection.getresponse()
         if response.status == 200:
-            if self.chr == '':
-                response = json.loads(response.read().decode())
-                return response
-
-            else:
-                response = json.loads(response.read().decode())
-                for dict in response['top_level_region']:
-                    if dict['name'] == self.chr:
-                        return dict['length']
+            response = json.loads(response.read().decode())
+            return response
 
         elif response.status == 404:
             return Ensembl.FAIL_CONNECTION_ERROR

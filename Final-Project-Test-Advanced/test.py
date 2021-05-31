@@ -1,9 +1,4 @@
-def test(x, y):
-    if x == 2:
-        return x
-    else:
-        return x,y
+x = 'w'
 
-
-x, y = test(2, 4)
-print(x)
+if x.isdigit():
+    print('ole')

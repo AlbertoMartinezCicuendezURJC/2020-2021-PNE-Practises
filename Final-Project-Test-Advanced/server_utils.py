@@ -36,14 +36,23 @@ def print_chr_length(specie, chr, param_json):
     e = Ensembl(specie, chr, '', '')
     information = e.ensembl()
     if param_json:
-        return information
+        if information == Ensembl.SPECIE_NOT_FOUND_ERROR:
+            return information
+        else:
+            if not chr.isdigit():
+                return "The chromosome number '" + chr + "' is not a number. Please, choose an INTEGER number and try again."
+            else:
+                return information
 
     else:
         if information != Ensembl.SPECIE_NOT_FOUND_ERROR and information != Ensembl.FAIL_CONNECTION_ERROR:
+            for dict in information['top_level_region']:
+                if dict['name'] == chr:
+                    lenght = dict['length']
             try:
                 context['specie'] = specie
                 context['chr'] = int(chr)
-                context['len'] = information
+                context['len'] = lenght
                 contents = read_template_htm_file('./html/info/chrlength.html').render(context=context)
                 return contents
             except ValueError:
