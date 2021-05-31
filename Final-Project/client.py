@@ -173,5 +173,3 @@ termcolor.cprint('The percentage of the base "T": ', 'magenta', end='')
 termcolor.cprint(str(t_perc) + '%', 'blue')
 termcolor.cprint('=============================================================================', 'green')
 
-
-

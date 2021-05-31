@@ -74,7 +74,6 @@ def is_valid_sequence(strbases):
             return True
 
 
-
 class Seq:
 
     NULL_SEQUENCE = "NULL"
