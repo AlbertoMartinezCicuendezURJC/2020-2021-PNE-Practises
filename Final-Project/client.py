@@ -31,15 +31,13 @@ print(f"Response received!: {limit_response.status} {limit_response.reason}\n")
 
 limit_dict = json.loads(limit_response.read().decode())
 
-try:
-    limit = endpoint1.split('?')[1].split('=')[1].split('&')[0]
-    termcolor.cprint('The first ' + limit + ' species are:', 'magenta')
-    if limit == '':
-        limit = Ensembl.counter_species()
-    for n in range(0, int(limit)):
-        termcolor.cprint(limit_dict['species'][n]['display_name'], 'blue')
-except ValueError:
-    print('Choose an integer number!')
+
+limit = endpoint1.split('?')[1].split('=')[1].split('&')[0]
+termcolor.cprint('The first ' + limit + ' species are:', 'magenta')
+if limit == '':
+    limit = Ensembl.counter_species()
+for n in range(0, int(limit)):
+    termcolor.cprint(limit_dict['species'][n]['display_name'], 'blue')
 termcolor.cprint('=============================================================================', 'green')
 
 endpoint2 = "/karyotype?specie=mouse"

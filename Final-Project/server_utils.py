@@ -171,6 +171,7 @@ def print_calc(gene, param_json):
             information = information['seq']
             s1 = Seq(information)
             a_percentage, c_percentage, g_percentage, t_percentage = s1.percentages()
+            context['gene'] = gene
             context['a_perc'] = a_percentage
             context['c_perc'] = c_percentage
             context['g_perc'] = g_percentage
