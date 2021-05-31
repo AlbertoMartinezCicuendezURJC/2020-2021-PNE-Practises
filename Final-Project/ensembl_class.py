@@ -47,7 +47,7 @@ class Ensembl:
                 counter += 1
             return counter
 
-    @staticmethod
+    @staticmethod # as it does not need any attributes we define it as a static method
     def ensembl2():
         connection = http.client.HTTPConnection(Ensembl.SERVER)
         connection.request('GET', Ensembl.ENDPOINT2 + Ensembl.PARAMS)
@@ -58,7 +58,6 @@ class Ensembl:
 
         elif response.status == 404:
             return Ensembl.FAIL_CONNECTION_ERROR
-
         else:
             return Ensembl.SPECIE_NOT_FOUND_ERROR
 
