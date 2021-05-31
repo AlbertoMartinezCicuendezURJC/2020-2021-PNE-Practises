@@ -27,9 +27,10 @@ limit_dict = json.loads(limit_response.read().decode())
 
 
 limit = endpoint1.split('?')[1].split('=')[1].split('&')[0]
-termcolor.cprint('The first ' + limit + ' species are:', 'magenta')
 if limit == '':
     limit = Ensembl.counter_species()
+
+termcolor.cprint('The first ' + limit + ' species are:', 'magenta')
 for n in range(0, int(limit)):
     termcolor.cprint(limit_dict['species'][n]['display_name'], 'blue')
 termcolor.cprint('=============================================================================', 'green')
