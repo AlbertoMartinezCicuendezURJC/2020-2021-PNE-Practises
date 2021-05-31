@@ -27,7 +27,7 @@ def print_karyotype(specie, param_json):
             context['error_msg'] = information
             context['type'] = 'specie'
             context['input'] = specie
-            contents = read_template_htm_file('html/dynamic_error.html').render(context=context)
+            contents = read_template_htm_file('html/not_found_error.html').render(context=context)
             return contents
 
 
@@ -36,13 +36,7 @@ def print_chr_length(specie, chr, param_json):
     e = Ensembl(specie, '')
     information = e.ensembl()
     if param_json:
-        if information == Ensembl.SPECIE_NOT_FOUND_ERROR:
-            return information
-        else:
-            if not chr.isdigit():
-                return "The chromosome number '" + chr + "' is not a number. Please, choose an INTEGER number and try again."
-            else:
-                return information
+        return information
 
     else:
         if information != Ensembl.SPECIE_NOT_FOUND_ERROR and information != Ensembl.FAIL_CONNECTION_ERROR:
@@ -51,21 +45,22 @@ def print_chr_length(specie, chr, param_json):
                     lenght = dict['length']
             try:
                 context['specie'] = specie
-                context['chr'] = int(chr)
+                context['chr'] = chr
                 context['len'] = lenght
                 contents = read_template_htm_file('./html/info/chrlength.html').render(context=context)
                 return contents
-            except ValueError:
-                context['type'] = 'chromosome number'
+            except UnboundLocalError:
+                context['type'] = 'chromosome name'
                 context['input'] = chr
-                contents = read_template_htm_file('html/Numbers_error.html').render(context=context)
+                context['reason'] = 'does not belong to this specie'
+                contents = read_template_htm_file('html/Index_error.html').render(context=context)
                 return contents
 
         else:
             context['type'] = 'specie'
             context['error_msg'] = information
             context['input'] = specie
-            contents = read_template_htm_file('html/dynamic_error.html').render(context=context)
+            contents = read_template_htm_file('html/not_found_error.html').render(context=context)
             return contents
 
 
@@ -93,11 +88,24 @@ def print_limit(limit, param_json):
         if not param_json:
             context['type'] = 'limit'
             context['input'] = limit
-            contents = read_template_htm_file('html/Numbers_error.html').render(context=context)
+            context['reason'] = 'is not an integer number'
+            contents = read_template_htm_file('html/Index_error.html').render(context=context)
             return contents
 
         else:
             return 'The limit ' + limit + ' is not a number. Please, choose an INTEGER number and try again.'
+
+    except IndexError:
+        if not param_json:
+            context['type'] = 'limit'
+            context['input'] = limit
+            context['reason'] = 'is out of the range'
+            contents = read_template_htm_file('html/Index_error.html').render(context=context)
+            return contents
+
+        else:
+            return 'The limit ' + limit + ' is not a number. Please, choose an INTEGER number and try again.'
+
 
 def print_sequence(gene, param_json):
     context = {}
@@ -118,7 +126,7 @@ def print_sequence(gene, param_json):
             context['error_msg'] = information
             context['type'] = 'gene'
             context['input'] = gene
-            contents = read_template_htm_file('html/dynamic_error.html').render(context=context)
+            contents = read_template_htm_file('html/not_found_error.html').render(context=context)
             return contents
 
 
@@ -146,7 +154,7 @@ def print_info(gene, param_json):
             context['error_msg'] = information
             context['type'] = 'gene'
             context['input'] = gene
-            contents = read_template_htm_file('html/dynamic_error.html').render(context=context)
+            contents = read_template_htm_file('html/not_found_error.html').render(context=context)
             return contents
 
 
@@ -162,12 +170,12 @@ def print_calc(gene, param_json):
         if information != Ensembl.GENE_NOT_FOUND_ERROR and information != Ensembl.FAIL_CONNECTION_ERROR:
             information = information['seq']
             s1 = Seq(information)
-            a_percentage, c_percentage, g_percentage, t_percentage, length = s1.percentages_and_length()
+            a_percentage, c_percentage, g_percentage, t_percentage = s1.percentages()
             context['a_perc'] = a_percentage
             context['c_perc'] = c_percentage
             context['g_perc'] = g_percentage
             context['t_perc'] = t_percentage
-            context['length'] = length
+            context['length'] = s1.len()
             contents = read_template_htm_file('html/info/geneCalc.html').render(context=context)
             return contents
 
@@ -175,7 +183,7 @@ def print_calc(gene, param_json):
             context['error_msg'] = information
             context['type'] = 'gene'
             context['input'] = gene
-            contents = read_template_htm_file('html/dynamic_error.html').render(context=context)
+            contents = read_template_htm_file('html/not_found_error.html').render(context=context)
             return contents
 
 

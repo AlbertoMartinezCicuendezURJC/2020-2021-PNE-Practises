@@ -85,16 +85,13 @@ class Seq:
 
         if strbases == "NULL":
             self.strbases = strbases
-            print("NULL Seq created!")
 
         else:
             if Seq.is_valid_sequence_2(strbases):
                 self.strbases = strbases
-                print("New sequence created!")
 
             else:
                 self.strbases = Seq.INVALID_SEQUENCE
-                print("INCORRECT Sequence detected")
 
 
     def is_valid_sequence(self):
@@ -193,13 +190,13 @@ class Seq:
         else:
             return "G"
 
-    def percentages_and_length(self):
+    def percentages(self):
         a, c, g, t = self.count_bases()
         a_percentage = round((a / self.len()) * 100, 3)
         c_percentage = round((c / self.len()) * 100, 3)
         g_percentage = round((g / self.len()) * 100, 3)
         t_percentage = round((t / self.len()) * 100, 3)
-        return a_percentage, c_percentage, g_percentage, t_percentage, self.len()
+        return a_percentage, c_percentage, g_percentage, t_percentage
 
     def print_info(self, sequence):
         a, c, g, t = self.count_bases()
