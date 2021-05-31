@@ -17,10 +17,8 @@ class Ensembl:
                   'RNU6_269P': 'ENSG00000212379', 'MIR633': 'ENSG00000207552', 'TTTY4C': 'ENSG00000228296',
                   'RBMY2YP': 'ENSG00000227633', 'FGFR3': 'ENSG00000068078', 'KDR': 'ENSMUSG00000062960', 'ANK2': 'ENSG00000145362'}
 
-    def __init__(self, specie, chr, limit, gene):
+    def __init__(self, specie, gene):
         self.specie = specie
-        self.chr = chr
-        self.limit = limit
         self.gene = gene
 
     def ensembl(self):
@@ -36,7 +34,7 @@ class Ensembl:
         else:
             return Ensembl.SPECIE_NOT_FOUND_ERROR
 
-    @staticmethod
+    @staticmethod  # in this way, the server will work perfect if ensembl.org is updated
     def counter_species():
         connection = http.client.HTTPConnection(Ensembl.SERVER)
         connection.request('GET', Ensembl.ENDPOINT2 + Ensembl.PARAMS)
@@ -48,7 +46,8 @@ class Ensembl:
                 counter += 1
             return counter
 
-    def ensembl2(self):
+    @staticmethod
+    def ensembl2():
         connection = http.client.HTTPConnection(Ensembl.SERVER)
         connection.request('GET', Ensembl.ENDPOINT2 + Ensembl.PARAMS)
         response = connection.getresponse()

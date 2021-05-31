@@ -11,7 +11,7 @@ def read_template_htm_file(filename):
 
 def print_karyotype(specie, param_json):
     context = {}
-    e = Ensembl(specie, '', '', '')
+    e = Ensembl(specie, '')
     information = e.ensembl()
 
     if param_json:
@@ -33,7 +33,7 @@ def print_karyotype(specie, param_json):
 
 def print_chr_length(specie, chr, param_json):
     context = {}
-    e = Ensembl(specie, chr, '', '')
+    e = Ensembl(specie, '')
     information = e.ensembl()
     if param_json:
         if information == Ensembl.SPECIE_NOT_FOUND_ERROR:
@@ -72,15 +72,15 @@ def print_chr_length(specie, chr, param_json):
 def print_limit(limit, param_json):
     context = {}
     try:
-        e = Ensembl('', '', int(limit), '')
-        information, counter = e.ensembl2()
+        limit = int(limit)
+        information, counter = Ensembl.ensembl2()
 
         if param_json:
             return information
 
         else:
             specie_name_list = []
-            for n in range(0, int(limit)):
+            for n in range(0, limit):
                 specie_name_list.append(information['species'][n]['display_name'])
 
             context['specie'] = specie_name_list
@@ -101,7 +101,7 @@ def print_limit(limit, param_json):
 
 def print_sequence(gene, param_json):
     context = {}
-    e = Ensembl('', '', '', gene)
+    e = Ensembl('', gene)
     information = e.ensembl3()
 
     if param_json:
@@ -124,7 +124,7 @@ def print_sequence(gene, param_json):
 
 def print_info(gene, param_json):
     context = {}
-    e = Ensembl('', '', '', gene)
+    e = Ensembl('', gene)
     information = e.ensembl3()
 
     if param_json:
@@ -152,7 +152,7 @@ def print_info(gene, param_json):
 
 def print_calc(gene, param_json):
     context = {}
-    e = Ensembl('', '', '', gene)
+    e = Ensembl('', gene)
     information = e.ensembl3()
 
     if param_json:
