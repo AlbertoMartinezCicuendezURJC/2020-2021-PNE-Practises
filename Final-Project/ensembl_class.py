@@ -23,8 +23,14 @@ class Ensembl:
         self.gene = gene
 
     def ensembl(self):
+        specie = self.specie.split(' ')
+        if len(specie) == 2:
+            specie = specie[0] + '_' + specie[1]
+        else:
+            specie = self.specie
+
         connection = http.client.HTTPConnection(Ensembl.SERVER)
-        connection.request('GET', Ensembl.ENDPOINT + self.specie + Ensembl.PARAMS)
+        connection.request('GET', Ensembl.ENDPOINT + specie + Ensembl.PARAMS)
         response = connection.getresponse()
         if response.status == 200:
             response = json.loads(response.read().decode())

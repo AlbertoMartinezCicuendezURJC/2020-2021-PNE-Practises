@@ -1,3 +1,610 @@
+---> listSpecies endpoint
+
+* TEST 1:
+
+* Input:
+
+http://127.0.0.1:8080/listSpecies?limit=8
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Species!</title>
+      </head>
+      <body style="background-color: #90ee90;">
+        <p>The total number of species is: 310</p><br>
+        <p>The limit number established was: 8</p><br>
+        <p>The name of the species are:</p>
+        Little spotted kiwi
+        Indian glassy fish
+        Blue tit
+        Narwhal
+        American beaver
+        Lumpfish
+        Chinese hamster CHOK1GS
+        Channel bull blenny
+        <a href="/">Main Page</a>
+      </body>
+    </html>
+
+
+* TEST 2:
+
+* Input:
+
+http://127.0.0.1:8080/listSpecies?limit=
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Species!</title>
+      </head>
+      <body style="background-color: #90ee90;">
+        <p>The total number of species is: 310</p><br>
+        <p>The limit number established was: 310</p><br>
+        <p>The name of the species are:</p>
+        Little spotted kiwi
+        Indian glassy fish
+        Blue tit
+        Narwhal
+        American beaver
+        Lumpfish
+        Chinese hamster CHOK1GS
+        Channel bull blenny
+        Golden Hamster
+        Wild yak
+        Siamese fighting fish
+        Eastern happy
+        Hyrax
+        Eurasian eagle-owl
+        Japanese quail
+        Fugu
+        Asian bonytongue
+        Blue-ringed sea krait
+        Mouse CBA/J
+        Agassiz's desert tortoise
+        Lyretail cichlid
+        Coho salmon
+        Oriental scops-owl
+        Zebra mbuna
+        Arctic ground squirrel
+        Clown anemonefish
+        Koala
+        Algerian mouse
+        Sheep (texel)
+        Mouse C3H/HeJ
+        Dog
+        Spoon-billed sandpiper
+        Northern American deer mouse
+        Burrowing owl
+        Saccharomyces cerevisiae
+        Spotted gar
+        Steppe mouse
+        Canada lynx
+        Polar bear
+        Amazon molly
+        Tongue sole
+        Platypus
+        Common snapping turtle
+        Painted turtle
+        Opossum
+        Golden snub-nosed monkey
+        Helmeted guineafowl
+        Golden-line barbel
+        C.savignyi
+        Gorilla
+        Northern pike
+        Swamp eel
+        Indian peafowl
+        Barramundi perch
+        Meerkat
+        Chinese medaka
+        Pig - Wuzhishan
+        Makobe Island cichlid
+        Reedfish
+        Ryukyu mouse
+        Red fox
+        Wallaby
+        Central bearded dragon
+        Vaquita
+        Capuchin
+        Alpaca
+        Lesser hedgehog tenrec
+        Angola colobus
+        Pig-tailed macaque
+        Cow
+        Orbiculate cardinalfish
+        Eastern spot-billed duck
+        Common carp hebao red
+        Yellowtail amberjack
+        Brazilian guinea pig
+        Mexican tetra
+        Ruff
+        Domestic yak
+        Zebra finch
+        Black snub-nosed monkey
+        Bengalese finch
+        Damara mole rat
+        Japanese medaka HdrR
+        Budgerigar
+        Tarsier
+        Chacoan peccary
+        Platyfish
+        Duck
+        Swainson's thrush
+        Elephant shark
+        Turquoise killifish
+        Pig USMARC
+        Ugandan red Colobus
+        Pig - Tibetan
+        Lion
+        Lesser Egyptian jerboa
+        Stickleback
+        Guinea Pig
+        Dingo
+        Daurian ground squirrel
+        Dog - Basenji
+        Three-toed box turtle
+        Tasmanian devil
+        Siberian musk deer
+        Pig - Largewhite
+        Mouse A/J
+        Indian medaka
+        Mouse CAST/EiJ
+        Cat
+        Chinese hamster CriGri
+        Rat
+        Alpine marmot
+        Goat
+        Medium ground-finch
+        Shrew mouse
+        Megabat
+        Orangutan
+        Atlantic salmon
+        Sooty mangabey
+        Chicken
+        Green anole
+        Argentine black and white tegu
+        Degu
+        Indian cobra
+        Drill
+        Caenorhabditis elegans
+        Marmoset
+        Goodes thornscrub tortoise
+        Rufous-capped babbler
+        Pink-footed goose
+        Pig - Landrace
+        Upper Galilee mountains blind mole rat
+        Bicolor damselfish
+        Live sharksucker
+        Coquerel's sifaka
+        Dolphin
+        Mouse LP/J
+        Tree Shrew
+        Atlantic herring
+        Greater horseshoe bat
+        Gouldian finch
+        C.intestinalis
+        Blue tilapia
+        Tropical clawed frog
+        California sea lion
+        Dog - Great Dane
+        Muscovy Duck (domestic type)
+        Mouse NOD/ShiLtJ
+        Goat (black bengal)
+        Human
+        Great spotted kiwi
+        Ocean sunfish
+        Bolivian squirrel monkey
+        Chinook salmon
+        Zig-zag eel
+        Naked mole-rat female
+        Turkey
+        Armadillo
+        Paramormyrops kingsleyae
+        Guppy
+        Lamprey
+        Hybrid - Bos Indicus
+        Sloth
+        Huchen
+        Rainbow trout
+        Large yellow croaker
+        Asiatic black bear
+        Pig - Pietrain
+        Blue-crowned manakin
+        Javanese ricefish
+        Swan goose
+        Blunt-snouted clingfish
+        African ostrich
+        Common carp
+        Turbot
+        Hedgehog
+        Olive baboon
+        Western mosquitofish
+        Long-tailed chinchilla
+        Hagfish
+        Macaque
+        Prairie vole
+        Atlantic cod
+        Microbat
+        Pike-perch
+        Midas cichlid
+        Mouse Lemur
+        Beluga whale
+        Mouse AKR/J
+        Dark-eyed junco
+        Ferret
+        Blind barbel
+        Emu
+        Collared flycatcher
+        Ma's night monkey
+        Mallard
+        Silver-eye
+        Eastern brown snake
+        Tiger
+        Pig - Hampshire
+        Common canary
+        Tiger tail seahorse
+        Mouse PWK/PhJ
+        Greater bamboo lemur
+        West African mud turtle
+        Japanese medaka HSOK
+        Brown trout
+        Tuatara
+        Pig - Jinhua
+        Shrew
+        Sperm whale
+        European seabass
+        Pinecone soldierfish
+        Pig - Bamei
+        American black bear
+        Sheepshead minnow
+        Great Tit
+        Squirrel
+        Sailfin molly
+        Mouse BALB/cJ
+        Common wombat
+        Mouse WSB/EiJ
+        Eurasian sparrowhawk
+        Mouse 129S1/SvImJ
+        Horned golden-line barbel
+        Mongolian gerbil
+        Naked mole-rat male
+        Jewelled blenny
+        New Caledonian crow
+        American mink
+        Eastern buzzard
+        Australian saltwater crocodile
+        Chimpanzee
+        Horse
+        Common wall lizard
+        Kakapo
+        Abingdon island giant tortoise
+        Pig - Meishan
+        Golden pheasant
+        Hybrid - Bos Taurus
+        Mouse FVB/NJ
+        Chinese softshell turtle
+        Gilthead seabream
+        Okarito brown kiwi
+        Mangrove rivulus
+        Gelada
+        Leishan spiny toad
+        Kangaroo rat
+        Superb fairywren
+        Pachon cavefish
+        Mouse C57BL/6NJ
+        White-throated sparrow
+        Common carp huanghe
+        Donkey
+        Golden eagle
+        Red-bellied piranha
+        Elephant
+        Pig - Berkshire
+        Giant panda
+        Ballan wrasse
+        Eurasian red squirrel
+        Arabian camel
+        Bonobo
+        Ring-necked pheasant
+        Bushbaby
+        Nile tilapia
+        Common carp german mirror
+        Orange clownfish
+        Common kestrel
+        Pig - Rongchang
+        Coelacanth
+        Goldfish
+        Periophthalmus magnuspinnatus
+        Northern spotted owl
+        Shortfin molly
+        Crab-eating macaque
+        American bison
+        Yarkand deer
+        Electric eel
+        Climbing perch
+        Rabbit
+        Mouse
+        Gibbon
+        Monterrey platyfish
+        Mouse NZO/HlLtJ
+        Round goby
+        Yellow-billed parrot
+        Mainland tiger snake
+        Chinese hamster PICR
+        Pika
+        Mouse DBA/2J
+        Channel catfish
+        Japanese medaka HNI
+        Zebrafish
+        Small tree finch
+        Golden-collared manakin
+        Drosophila melanogaster
+        Chilean tinamou
+        Blue whale
+        Spiny chromis
+        Vervet-AGM
+        Burton's mouthbrooder
+        Denticle herring
+        Leopard
+        Tetraodon
+        Sheep
+        Mummichog
+        Pig
+        Komodo dragon
+        Greater amberjack
+        <a href="/">Main Page</a>
+      </body>
+    </html>
+
+
+* TEST 3:
+
+* Input:
+
+http://127.0.0.1:8080/listSpecies?limit=hey
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>ERROR!</title>
+      </head>
+      <body style="background-color: #e34c4c;">
+        <h1>ERROR</h1>
+        <p>The limit 'hey' is not a number. Please, choose an INTEGER number and try again.</p>
+      <a href="/">Main Page</a>
+      </body>
+    </html>
+
+
+---> karyotype endpoint
+
+* TEST 1:
+
+* Input:
+
+http://127.0.0.1:8080/karyotype?specie=cat
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Karyotype!</title>
+      </head>
+      <body style="background-color: #90ee90;">
+        <h1>The name of the chromosomes are:</h1><br>
+        A1
+        A2
+        A3
+        B1
+        B2
+        B3
+        B4
+        C1
+        C2
+        D1
+        D2
+        D3
+        D4
+        E1
+        E2
+        E3
+        F1
+        F2
+        X
+        MT
+        <a href="/">Main Page</a>
+      </body>
+    </html>
+
+
+* TEST 2:
+
+* Input:
+
+http://127.0.0.1:8080/karyotype?specie=bottle
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>ERROR!</title>
+      </head>
+      <body style="background-color: #cf4c4c;">
+        <h1>Specie not found!</h1>
+        <p>The specie 'bottle' was not found. Make sure you have write it correctly or choose another one</p>
+      <a href="/">Main Page</a>
+      </body>
+    </html>
+
+
+* TEST 3:
+
+* Input:
+
+http://127.0.0.1:8080/karyotype?specie=
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>ERROR!</title>
+      </head>
+      <body style="background-color: #e34c4c;">
+        <h1>ERROR</h1>
+        <p>You did not request anything or you missed one of them. Please, check it and try again.</p>
+      <a href="/">Main Page</a>
+      </body>
+    </html>
+
+
+
+---> chromosomeLength endpoint
+
+* TEST 1:
+
+* Input:
+
+http://127.0.0.1:8080/chromosomeLength?specie=mouse&chromo=4
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Chromosome Lenght!</title>
+      </head>
+      <body style="background-color: #90ee90;">
+      <p>The specie selected was: mouse</p><br>
+      <p>The chromosome selected was: 4</p><br>
+      <p>The lenght of the chromosme is: 156860686</p><br>
+        <a href="/">Main Page</a>
+      </body>
+    </html>
+
+* TEST 2:
+
+* Input:
+
+http://127.0.0.1:8080/chromosomeLength?specie=mouse&chromo=
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>ERROR!</title>
+      </head>
+      <body style="background-color: #e34c4c;">
+        <h1>ERROR</h1>
+        <p>You did not request anything or you missed one of them. Please, check it and try again.</p>
+      <a href="/">Main Page</a>
+      </body>
+    </html>
+
+* TEST 3:
+
+* Input:
+
+http://127.0.0.1:8080/chromosomeLength?specie=&chromo=4
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>ERROR!</title>
+      </head>
+      <body style="background-color: #e34c4c;">
+        <h1>ERROR</h1>
+        <p>You did not request anything or you missed one of them. Please, check it and try again.</p>
+      <a href="/">Main Page</a>
+      </body>
+    </html>
+
+* TEST 4:
+
+* Input:
+
+http://127.0.0.1:8080/chromosomeLength?specie=&chromo=
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>ERROR!</title>
+      </head>
+      <body style="background-color: #e34c4c;">
+        <h1>ERROR</h1>
+        <p>You did not request anything or you missed one of them. Please, check it and try again.</p>
+      <a href="/">Main Page</a>
+      </body>
+    </html>
+
+
+* TEST 5:
+
+* Input:
+
+http://127.0.0.1:8080/chromosomeLength?specie=hola&chromo=4
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>ERROR!</title>
+      </head>
+      <body style="background-color: #cf4c4c;">
+        <h1>{{context.error_msg}}</h1>
+        <p>The specie 'hola' was not found. Make sure you have write it correctly or choose another one.</p>
+      <a href="/">Main Page</a>
+      </body>
+    </html>
+
+* TEST 6:
+
+* Input:
+
+http://127.0.0.1:8080/chromosomeLength?specie=human&chromo=bye
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>ERROR!</title>
+      </head>
+      <body style="background-color: #e34c4c;">
+        <h1>ERROR</h1>
+        <p>The chromosome number 'bye' is not a number. Please, choose an INTEGER number and try again.</p>
+      <a href="/">Main Page</a>
+      </body>
+    </html>
+
+
 ---> geneSeq endpoint
 
 * TEST 1:
