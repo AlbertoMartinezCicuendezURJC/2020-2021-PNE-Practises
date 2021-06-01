@@ -1,59 +1,45 @@
 import socket
-import termcolor
 from pathlib import Path
+import termcolor
 
+# -- Server network parameters
+IP = "127.0.0.1"
+PORT = 8080
+HTML_ASSEST = './html/'
 
 def read_html_file(filename):
     content = Path(filename).read_text()
     return content
 
-# -- Server network parameters
-IP = "127.0.0.1"
-PORT = 8080
-FOLDER = "./html/"
-
 def process_client(s):
-    # -- Receive the request message
     req_raw = s.recv(2000)
     req = req_raw.decode()
 
     print("Message FROM CLIENT: ")
 
-    # -- Split the request messages into lines
     lines = req.split('\n')
-
-    # -- The request line is the first
     req_line = lines[0]
     path_name = req_line.split(' ')[1]
 
 
-    print("Request line: ", end="")
-    termcolor.cprint(req_line, "green")
+    if path_name == '/':
+        body = read_html_file(HTML_ASSEST + 'index.html')
+    elif path_name == "/info/A":
+        body = read_html_file(HTML_ASSEST + "A.html")
+    elif path_name == "/info/C":
+        body = read_html_file(HTML_ASSEST + "C.html")
+    elif path_name == "/info/G":
+        body = read_html_file(HTML_ASSEST + "G.html")
+    else:
+        body = read_html_file(HTML_ASSEST + "T.html")
 
-    # -- Generate the response message
-    # It has the following lines
-    # Status line
-    # header
-    # blank line
-    # Body (content to send)
+
 
     # -- Status line: We respond that everything is ok (200 code)
     status_line = "HTTP/1.1 200 OK\n"
 
     # -- Add the Content-Type header
-    header = "Content-Type: text/html\n"
-
-
-    if path_name == "/":
-        body = read_html_file(FOLDER + "index.html")
-    elif "/info/" in path_name:
-        try:
-            body = read_html_file(FOLDER + path_name.split('/')[-1] + "html")
-        except FileNotFoundError:
-            body = read_html_file(FOLDER + "error.html")
-    else:
-        body = read_html_file(FOLDER + "Error.html")
-
+    header = "Content-Type: text/html\n" #si pones plain en vez de html te dara el codigo tal cual
 
     # -- Add the Content-Length
     header += f"Content-Length: {len(body)}\n"

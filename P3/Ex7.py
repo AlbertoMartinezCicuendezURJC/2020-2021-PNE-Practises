@@ -1,6 +1,8 @@
 from Client_class import Client
 from server_utils import list_sequences
 
+
+
 gene_list = ["U5", "ADA", "FRAT1", "FXN", "RNU6_269P"]
 print("-----| Practice 3, Exercise 7 |------")
 
