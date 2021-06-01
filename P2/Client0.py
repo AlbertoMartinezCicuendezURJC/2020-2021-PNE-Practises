@@ -27,7 +27,8 @@ class Client:
         s.connect((self.ip, self.port))
 
         # Send data.
-        s.send(msg.encode())
+
+        s.send(str(msg).encode())
 
         # Receive data
         response = s.recv(2048).decode("utf-8") #esto es como un block, hasta que no haya mensajes aqui te quedas

@@ -1,15 +1,17 @@
 from Client0 import Client
-from pathlib import Path
+import Seq1
 
 PRACTICE = 2
-EXERCISE = 2
+EXERCISE = 5
 
 print(f"-----| Practice {PRACTICE}, Exercise {EXERCISE} |------")
 
 IP = "127.0.0.1"
 PORT = 12100
-
-
 c = Client(IP, PORT)
-print(c.talk("Sending  the U5 Gene to the server..."))
-print(c.talk(Path("U5").read_text()))
+s = Seq1.Seq()
+s.read_fasta('U5')
+
+print("Sending  the U5 Gene to the server...")
+print(s.strbases)
+print(c.talk(s))

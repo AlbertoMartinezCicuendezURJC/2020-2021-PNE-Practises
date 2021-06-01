@@ -1,7 +1,7 @@
 import socket
 
 # Configure the Server's IP and PORT #utilizar el mismo puerto e ip en Server y Client
-PORT = 12100
+PORT = 8080
 IP = "127.0.0.1"
 MAX_OPEN_REQUESTS = 5
 

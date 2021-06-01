@@ -3,7 +3,7 @@ from Client0 import Client
 from Client0 import Client
 
 PRACTICE = 2
-EXERCISE = 2
+EXERCISE = 3
 
 print(f"-----| Practice {PRACTICE}, Exercise {EXERCISE} |------")
 
