@@ -101,6 +101,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     param_json = False
                     contents = server_utils.print_limit(limit, param_json)
                     content_type = 'text/html'
+                    if 'check' in arguments.keys() and arguments['check'][0] == 'on':
+                        print('The checkbox was checked!')
 
         elif path_name == '/geneSeq':
             if 'json' in arguments.keys() and arguments['json'][0] == '1' and len(arguments) == 2:
