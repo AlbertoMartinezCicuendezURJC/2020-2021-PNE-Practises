@@ -12,12 +12,12 @@ df = df.rename(columns={"Unnamed: 0": "id"})
 ped = df['ped']
 #print(ped)
 
-#para aceder a los valores de una row:
+#para aceder a los valores de una column:
 one_row = df.loc[0]
 five_rows = df.loc[0:5] #DANGER, aqui imprimimos de 0 a 5, no de 0 a 4 como estamos acostumrbados
 #print(one_row)
 #print(five_rows)
-#print(dict(one_row)) puedes hacer esto y crear un dict facil y sencillo de la row que quieras
+#print(dict(one_row)) puedes hacer esto y crear un dict facil y sencillo de la column que quieras
 
 #para saber que columnas tenemos (el header):
 #print(df.columns) #para tener una lista en condiciones --> print(list(df.columns))

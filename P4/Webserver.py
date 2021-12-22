@@ -1,6 +1,5 @@
 import socket
 from pathlib import Path
-import termcolor
 
 # -- Server network parameters
 IP = "127.0.0.1"
