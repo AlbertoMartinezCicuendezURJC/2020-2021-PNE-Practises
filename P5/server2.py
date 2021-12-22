@@ -3,6 +3,7 @@ import socketserver
 import termcolor
 from pathlib import Path
 import jinja2
+import json
 
 # Define the Server's port
 PORT = 8080
@@ -68,23 +69,37 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         try:
             if file_name == "" or file_name == "index.html":
                 contents = read_html_file("./html/index.html")
+                content_type = 'text/html'
             elif "/info/" in self.path:
                 base = self.path.split("/")[-1]
-                context = BASES_INFORMATION[base]
-                context["letter"] = base
-                contents = read_template_htm_file("./html/info/general.html").render(base_information=context)
+                if base != 'A':
+                    context = BASES_INFORMATION[base]
+                    context["letter"] = base
+                    contents = read_template_htm_file("./html/info/general.html").render(base_information=context)
+                    content_type = 'text/html'
+
+                else:
+                    contents = {}
+                    contents["Name"] = 'Adenine'
+                    contents['Letter'] = base
+                    contents['Link'] = 'https://es.wikipedia.org/wiki/Adenina'
+                    contents['Formula'] = 'C5H5N5'
+                    contents = json.dumps(contents)
+                    content_type = 'application/json'
 
             else:
                 contents = read_html_file("./html/" + file_name)
+                content_type = 'text/html'
         except FileNotFoundError:
             contents = read_html_file("./html/" + "Error.html")
+            content_type = 'text/html'
 
 
         # Generating the response message
         self.send_response(200)  # -- Status line: OK! # it means success
 
         # Define the content-type header:
-        self.send_header('Content-Type', 'text/html')
+        self.send_header('Content-Type', content_type)
         self.send_header('Content-Length', len(contents.encode()))
 
         # The header is finished  # despues de los send_headers, luego el end_headers

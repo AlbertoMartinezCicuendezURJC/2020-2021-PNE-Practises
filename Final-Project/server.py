@@ -97,10 +97,23 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
 
                 else:
-                    limit = arguments['limit'][0]
-                    param_json = False
-                    contents = server_utils.print_limit(limit, param_json)
-                    content_type = 'text/html'
+                    if ('check' in arguments.keys() and len(arguments) == 1):
+                        contents = server_utils.read_template_htm_file('html/Error_blank.html').render()
+                        content_type = 'text/html'
+
+                    else:
+                        if 'check' in arguments.keys():
+                            print('The checkbox was checked!')
+                            limit = arguments['limit'][0]
+                            param_json = False
+                            contents = server_utils.print_limit(limit, param_json)
+                            content_type = 'text/html'
+                        else:
+                            print('The checkbox was not checked!')
+                            limit = arguments['limit'][0]
+                            param_json = False
+                            contents = server_utils.print_limit(limit, param_json)
+                            content_type = 'text/html'
 
         elif path_name == '/geneSeq':
             if 'json' in arguments.keys() and arguments['json'][0] == '1' and len(arguments) == 2:

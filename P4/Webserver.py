@@ -20,8 +20,21 @@ def process_client(s):
     req_line = lines[0]
     path_name = req_line.split(' ')[1]
 
+    if path_name == "/":
+        body = read_html_file(HTML_ASSEST + "index.html")
+    elif "/info/" in path_name:
+        try:
+            base = path_name.split("/")[-1]
+            body = read_html_file(HTML_ASSEST + base + '.html')
+        except FileNotFoundError:
+            body = read_html_file(HTML_ASSEST + 'Error.html')
 
-    if path_name == '/':
+    else:
+        body = read_html_file(HTML_ASSEST + 'Error.html')
+
+
+
+    """if path_name == '/':
         body = read_html_file(HTML_ASSEST + 'index.html')
     elif path_name == "/info/A":
         body = read_html_file(HTML_ASSEST + "A.html")
@@ -30,7 +43,7 @@ def process_client(s):
     elif path_name == "/info/G":
         body = read_html_file(HTML_ASSEST + "G.html")
     else:
-        body = read_html_file(HTML_ASSEST + "T.html")
+        body = read_html_file(HTML_ASSEST + "T.html")"""
 
 
 
